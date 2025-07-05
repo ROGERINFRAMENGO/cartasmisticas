@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAMO - Leitura de Cartas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h1>🌙 Tarot </h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Início</a></li>
+                <li><a href="#reading" class="nav-link">Leitura</a></li>
+                <li><a href="#cards" class="nav-link">Cartas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção Home -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Leitura de Cartas</p>
+                    </p>
+                    <button class="cta-button" onclick="showSection('reading')">
+                        ✨ Começar Leitura
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <div class="mystical-circle">
+                        <div class="card-preview"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reading-types">
+                <h3>leituras</h3>
+                <div class="types-grid">
+                    <div class="type-card" onclick="startReading('single')">
+                        <div class="type-icon">🃏</div>
+                        <h4>Carta Única</h4>
+                        <p>apenas uma carta</p>
+                    </div>
+                    <div class="type-card" onclick="startReading('three')">
+                        <div class="type-icon">🔮</div>
+                        <h4>3 Cartas</h4>
+                        <p>tres cartas</p>
+                    </div>
+                    <div class="type-card" onclick="startReading('celtic')">
+                        <div class="type-icon">⭐</div>
+                        <h4>grande</h4>
+                        <p>com 10 cartas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Leitura -->
+        <section id="reading" class="section">
+            <div class="reading-container">
+                <h2>Sua Leitura de Tarot</h2>
+                <p class="reading-instruction">clique nas cartas para revelá-las</p>
+                
+                <div class="deck-container">
+                    <div class="deck" id="deck">
+                        <div class="card-back"></div>
+                        <div class="card-back"></div>
+                        <div class="card-back"></div>
+                    </div>
+                    <button class="shuffle-btn" onclick="shuffleDeck()">🔄 Embaralhar</button>
+                </div>
+
+                <div class="selected-cards" id="selectedCards">
+                    <!-- Cartas selecionadas aparecerão aqui -->
+                </div>
+
+                <div class="interpretation" id="interpretation" style="display: none;">
+                    <h3>Interpretação</h3>
+                    <div class="interpretation-content"></div>
+                    <div class="reading-actions">
+                        <button class="action-btn" onclick="newReading()">Nova Leitura</button>
+                        <button class="action-btn secondary" onclick="saveReading()">Salvar Leitura</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Cartas -->
+        <section id="cards" class="section">
+            <div class="cards-container">
+                <h2>Biblioteca de Cartas</h2>
+                
+                <div class="search-filters">
+                    <input type="text" id="cardSearch" placeholder="Buscar carta..." onkeyup="filterCards()">
+                    <select id="cardFilter" onchange="filterCards()">
+                        <option value="all">Todas as Cartas</option>
+                        <option value="major">Arcanos Maiores</option>
+                        <option value="minor">Arcanos Menores</option>
+                    </select>
+                </div>
+
+                <div class="cards-grid" id="cardsGrid">
+                    <!-- Cartas serão carregadas aqui via JavaScript -->
+                </div>
+
+                <div class="card-detail" id="cardDetail" style="display: none;">
+                    <div class="detail-content">
+                        <div class="detail-image">
+                            <div class="card-display"></div>
+                        </div>
+                        <div class="detail-info">
+                            <h3 class="card-name"></h3>
+                            <div class="card-meanings">
+                                <div class="meaning-section">
+                                    <h4>Significado Positivo</h4>
+                                    <p class="positive-meaning"></p>
+                                </div>
+                                <div class="meaning-section">
+                                    <h4>Significado Negativo</h4>
+                                    <p class="negative-meaning"></p>
+                                </div>
+                                <div class="meaning-section">
+                                    <h4>Palavras-chave</h4>
+                                    <div class="keywords"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+<div style="text-align:center; margin: 2rem 0;">
+    <button onclick="exportReadingAsPDF()" class="action-btn">Salvar como PDF</button>
+    <button onclick="toggleSound()" class="action-btn secondary" id="soundToggle">🔊 Som: Ligado</button>
+</div>
+
+</main>
+
+    <footer class="footer">
+        <p>&copy; reservado exclusivamente para meu amor <3 </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
